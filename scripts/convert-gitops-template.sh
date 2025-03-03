@@ -72,7 +72,7 @@ convert() {
 
     # add pvc resource only for the vllm case.
     if [[ $input_file == *"pvc"* ]]; then
-        sed -i '1i {{ if not .Values.model.vllmSelected }}' "$input_file"
+        sed -i '1i {{ if .Values.model.vllmSelected }}' "$input_file"
         sed -i '$a {{ end }}' "$input_file"
     fi
 }

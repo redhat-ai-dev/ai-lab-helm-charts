@@ -8,8 +8,10 @@ metadata:
     "helm.sh/hook-delete-policy": before-hook-creation
 spec:
   containers:
-    - name: wget
-      image: quay.io/quay/busybox:latest
-      command: ["wget"]
-      args: ["{{ .Release.Name }}-model-server:{{ .Values.model.modelServicePort }}/"]
+    - name: curl
+      image: quay.io/curl/curl:latest
+      command:
+        - "sh"
+        - "-c"
+        - curl -sSf http://{{ .Release.Name }}-model-server:{{ .Values.model.modelServicePort }}/v1/models && exit 0;
   restartPolicy: Never

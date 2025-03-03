@@ -1,4 +1,4 @@
-{{ if not .Values.model.vllmSelected }}
+{{ if .Values.model.vllmSelected }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
